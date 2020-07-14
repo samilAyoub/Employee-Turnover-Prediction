@@ -7,4 +7,6 @@ There is a lot of steps for an organization to minimize employee attrition. Howe
 
 Beside of data analysis and building machine learning models, a high available and scalable web application had built to deploy to production the most accurate models to make it easy for an enterprise member to interact with them.
 
+The following figure represents the architecture of the application:
+
 ![1](https://user-images.githubusercontent.com/61546990/87445736-50676e00-c5f0-11ea-9c4e-5e2e76215487.png)
