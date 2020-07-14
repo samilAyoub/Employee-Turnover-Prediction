@@ -1,0 +1,8 @@
+flask
+sklearn
+pandas
+flask_cors
+imblearn
+pymongo
+dnspython
+gunicorn

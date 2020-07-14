@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  gb_web:
+    build: ./services/GB_services/web
+    command: python GB_API.py
+    volumes:
+      - ./services/GB_services/web:/usr/src/GB_app/
+    ports:
+      - 5001:5001
+    env_file:
+      - ./services/GB_services/.env.dev
+
+  lr_web:
+    build: ./services/LR_services/web
+    command: python LR_API.py
+    volumes:
+      - ./services/LR_services/web:/usr/src/LR_app/
+    ports:
+      - 5002:5002
+    env_file:
+      - ./services/LR_services/.env.dev
+
+  svm_web:
+    build: ./services/SVM_services/web
+    command: python SVM_API.py
+    volumes:
+      - ./services/SVM_services/web:/usr/src/SVM_app/
+    ports:
+      - 5003:5003
+    env_file:
+      - ./services/SVM_services/.env.dev     

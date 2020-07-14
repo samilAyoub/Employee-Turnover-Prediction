@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  gb_web:
+    build: ./services/GB_services/web
+    command: gunicorn --bind 0.0.0.0:5001 GB_API:app
+    volumes:
+      - ./services/GB_services/web:/usr/src/GB_app/
+    expose:
+      - 5001
+    env_file:
+      - ./services/GB_services/.env.prod
+
+  lr_web:
+    build: ./services/LR_services/web
+    command: gunicorn --bind 0.0.0.0:5002 LR_API:app
+    volumes:
+      - ./services/LR_services/web:/usr/src/LR_app/
+    expose:
+      - 5002
+    env_file:
+      - ./services/LR_services/.env.prod
+
+  svm_web:
+    build: ./services/SVM_services/web
+    command: gunicorn --bind 0.0.0.0:5003 SVM_API:app
+    volumes:
+      - ./services/SVM_services/web:/usr/src/SVM_app/
+    expose:
+      - 5003 
+    env_file:
+      - ./services/SVM_services/.env.prod   
+
+  db_web:
+    build: ./services/DB_services/web
+    command: gunicorn --bind 0.0.0.0:5004 DB_API:app
+    volumes:
+      - ./services/DB_services/web:/usr/src/DB_app/
+    expose:
+      - 5004
+    env_file:
+      - ./services/DB_services/.env.prod     
+
+  nginx:
+    volumes:
+      - ./services/app:/usr/share/nginx/html
+    build: ./services/nginx
+    ports:
+     - 1337:80
+    depends_on:
+      - gb_web    
+      - lr_web
+      - svm_web
+      - db_web
+  
